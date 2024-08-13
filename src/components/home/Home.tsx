@@ -238,7 +238,9 @@ function Home() {
         </span>
         <button
           onClick={handleNextPage}
-          disabled={currentPage === totalPages}
+          disabled={currentPage === (searchQuery
+            ? Math.ceil(displayedUsers.length / rowsLimit)
+            : totalPages)}
           className="rounded bg-indigo-500 px-4 py-2 text-sm font-medium text-white transition-colors ease-out hover:bg-indigo-700 disabled:bg-gray-300"
         >
           Next

@@ -121,15 +121,15 @@ function Home() {
   }, [search]);
 
   return (
-    <div className="container mx-auto py-6">
-      <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
+    <div className="container mx-auto px-4 py-6 md:px-6">
+      <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-0">
+        <div className="flex items-center justify-between space-x-2 md:justify-start">
           <input
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
             placeholder="Search by username..."
-            className="rounded-md border px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-md border px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 md:w-[initial]"
           />
           <button
             onClick={() => setSearchQuery("")}
@@ -174,21 +174,23 @@ function Home() {
                     </td>
                   ))}
                   <td>
-                    <button
-                      className="ml-2 rounded bg-yellow-500 px-4 py-2 text-sm font-medium text-white transition-colors ease-out hover:bg-yellow-700"
-                      onClick={() => handleEditButtonClick(user)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="ml-2 rounded bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors ease-out hover:bg-red-700"
-                      onClick={() => {
-                        setShowAlertDialog(true);
-                        setSelectedUser(user);
-                      }}
-                    >
-                      Delete
-                    </button>
+                    <div className="flex flex-col gap-2 md:flex-row md:items-center">
+                      <button
+                        className="ml-2 rounded bg-yellow-500 px-4 py-2 text-sm font-medium text-white transition-colors ease-out hover:bg-yellow-700"
+                        onClick={() => handleEditButtonClick(user)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="ml-2 rounded bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors ease-out hover:bg-red-700"
+                        onClick={() => {
+                          setShowAlertDialog(true);
+                          setSelectedUser(user);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -238,9 +240,12 @@ function Home() {
         </span>
         <button
           onClick={handleNextPage}
-          disabled={currentPage === (searchQuery
-            ? Math.ceil(displayedUsers.length / rowsLimit)
-            : totalPages)}
+          disabled={
+            currentPage ===
+            (searchQuery
+              ? Math.ceil(displayedUsers.length / rowsLimit)
+              : totalPages)
+          }
           className="rounded bg-indigo-500 px-4 py-2 text-sm font-medium text-white transition-colors ease-out hover:bg-indigo-700 disabled:bg-gray-300"
         >
           Next

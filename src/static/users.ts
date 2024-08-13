@@ -1,1 +1,1 @@
-export const tableHeaders = ["id", "username", "fullName", "email", "actions"];
+export const tableHeaders = ["id", "username", "email", "fullName", "actions"];
